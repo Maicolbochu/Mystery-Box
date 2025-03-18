@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaBox Shop 🎁</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #ff758c);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .box {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .box:hover {
+            transform: scale(1.1);
+        }
+        .box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        .button {
+            background: purple;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: darkviolet;
+        }
+        #cart-btn {
+            background: yellow;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            display: none;
+        }
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px 0;
+        }
+        .slider {
+            display: flex;
+            width: 200%;
+            animation: slide infinite 10s linear;
+        }
+        .slider img {
+            height: 120px;
+            margin: 0 15px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider img:hover {
+            transform: scale(1.2);
+        }
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Mystery Box Shop 📦❓🇺🇾</h1>
+    <div class="container" id="shop"></div>
+    <button id="cart-btn" onclick="checkout()">Finalizar compra</button>
+    
+    <div class="slider-container">
+        <div class="slider">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_745493-MLU75645511691_042024-O.webp" alt="Prenda 1">
+            <img src="https://calvinperu.vteximg.com.br/arquivos/ids/305515-470-620/J20J221466_BEH_1.jpg?v=638592495154900000" alt="Prenda 2">
+            <img src="https://depor8.com/cdn/shop/products/CamisetaNikeParkVIIBV6708010negrodepor8com_2.jpg?v=1624689481" alt="Prenda 3">
+            <img src="https://f.fcdn.app/imgs/d781d6/www.fitpoint.com.uy/fitpuy/b304/original/catalogo/ADIB8151_5230_1/2000-2000/remera-adidas-tr-es-base-blanco.jpg"O.w alt="Prenda 4">
+            <img src="https://static.dafiti.cl/p/calvin-klein-1961-2447222-2-zoom.jpg" alt="Prenda 5">
+            <img src="https://f.fcdn.app/imgs/f7dde1/www.globalsports.com.uy/gls/f6a4/original/catalogo/NKDD5003-010-1/1920-1200/pantalon-nike-challenger-knit-drifit-black.jpg" alt="Prenda 6">
+            <img src="https://i.pinimg.com/736x/d9/39/97/d939976a0db23cef82e2ee658c6322b0.jpg" alt="Prenda 7">
+            <img src="https://i.pinimg.com/236x/18/01/23/18012310e345824349de0449143dc58e.jpg" alt="Prenda 8">
+            <img src="https://soccershopuy.net/cdn/shop/files/b830f151d62988723cc73ea369dd41c9_1_600x600.webp?v=1711308841" alt="Prenda 1">
+            <img src="https://f.fcdn.app/imgs/9ca62d/aventureros.com.uy/avenuy/2d02/original/catalogo/RE042_Modelo12_2/2000-2000/remera-con-diseno-militar-black-ink-don-t-tread-on-me.jpg" alt="Prenda 3">
+            <img src="https://f.fcdn.app/imgs/9ca62d/aventureros.com.uy/avenuy/2d02/original/catalogo/RE042_Modelo12_2/2000-2000/remera-con-diseno-militar-black-ink-don-t-tread-on-me.jpg" alt="Prenda 3">
+            <img src="https://www.iplace.com.uy/ccstore/v1/images/?source=/file/v570080940296358697/products/100001648.00-apple-iphone-13-pro-max-1tb-plata-mlll3lz-a.jpg" alt="Prenda 4">
+            <img src="https://live.staticflickr.com/4383/36648521415_4b6d03f8ab_b.jpg" alt="Prenda 5">
+            <img src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1712821546/787299_XJGNW_2293_001_100_0000_Light.jpg" alt="Prenda 6">
+            <img src="https://media.gucci.com/style/White_Center_0_0_250x170/1730313029/796395_XJG1W_1275_001_100_0000_Light-Camiseta-de-punto-de-algodn-estampado.jpg" alt="Prenda 7">
+            <img src="https://i.pinimg.com/736x/e4/6c/fb/e46cfb927648779b9bae745a854a90a0.jpg" alt="Prenda 8">
+        </div>
+    </div>
+    
+    <script>
+        const boxes = [
+            { id: 1, name: "Básica", price: "$500UY", description: "Incluye 4 prendas sorpresa. 40% posibilidad de marca premium.", image: "https://cdni.iconscout.com/illustration/premium/thumb/mysterious-gift-box-illustration-download-in-svg-png-gif-file-formats--confetti-present-greeting-mystery-pack-miscellaneous-illustrations-4340701.png" },
+            { id: 2, name: "Deluxe", price: "$900UY", description: "Incluye 8 prendas sorpresa. 70% posibilidad de marca premium.", image: "https://cdni.iconscout.com/illustration/premium/thumb/mysterious-gift-box-illustration-download-in-svg-png-gif-file-formats--confetti-present-greeting-mystery-pack-miscellaneous-illustrations-4340701.png" },
+            { id: 3, name: "Ultra", price: "$1400UY", description: "Incluye 12 prendas sorpresa. 90% posibilidad de marca premium.", image: "https://cdni.iconscout.com/illustration/premium/thumb/mysterious-gift-box-illustration-download-in-svg-png-gif-file-formats--confetti-present-greeting-mystery-pack-miscellaneous-illustrations-4340701.png" }
+        ];
+        let cart = [];
+
+        function addToCart(boxId) {
+            const box = boxes.find(b => b.id === boxId);
+            if (box) {
+                cart.push(box);
+                document.getElementById("cart-btn").style.display = "block";
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            let orderText = cart.map(box => `${box.name} - ${box.price}`).join("%0A");
+            window.location.href = `https://wa.me/094603968?text=Pedido:%0A${orderText}`;
+        }
+
+        function renderBoxes() {
+            const shop = document.getElementById("shop");
+            shop.innerHTML = boxes.map(box => `
+                <div class="box" onclick='addToCart(${box.id})'>
+                    <img src="${box.image}" alt="${box.name}">
+                    <h2>${box.name}</h2>
+                    <p>${box.price}</p>
+                    <p>${box.description}</p>
+                </div>
+            `).join("");
+        }
+        
+        document.addEventListener("DOMContentLoaded", renderBoxes);
+    </script>
+</body>
+</html>
